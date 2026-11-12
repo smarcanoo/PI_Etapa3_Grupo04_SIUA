@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Diagrama de flujo proceso 1"/>
+        <attribute name="authors" value="semar"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-09-06 08:47:46 p.&#8239;m."/>
+        <attribute name="created" value="c2VtYXI7U0FSQS1CT1g7MjAyNi0wOS0wNjswODoyOToxOCBwLuKAr20uOzEwODAx"/>
+        <attribute name="edited" value="c2VtYXI7U0FSQS1CT1g7MjAyNi0wOS0wNjswODo0Nzo0NiBwLuKAr20uOzE7MTA5MTA="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="codigoprod, nombreprod, categoriaprod, fechavenc" type="String" array="False" size=""/>
+            <declare name="cantrecibida, stockactual" type="Integer" array="False" size=""/>
+            <declare name="preciocompra, precioventa" type="Real" array="False" size=""/>
+            <declare name="coincideorden, existesistema" type="Boolean" array="False" size=""/>
+            <output expression="&quot;Coincide la mercanc&#237;a con la orden? (true/false)&quot;" newline="True"/>
+            <input variable="coincideorden"/>
+            <if expression="coincideorden == true">
+                <then>
+                    <output expression="&quot;Ingrese c&#243;digo, nombre y categor&#237;a: &quot;" newline="True"/>
+                    <input variable="codigoprod"/>
+                    <input variable="nombreprod"/>
+                    <input variable="categoriaprod"/>
+                    <output expression="&quot;Ingrese la cantidad de unidades recibidas: &quot;" newline="True"/>
+                    <input variable="cantrecibida"/>
+                    <output expression="&quot;Ingrese precios de compra, venta y vencimiento: &quot;" newline="True"/>
+                    <input variable="preciocompra"/>
+                    <input variable="precioventa"/>
+                    <input variable="fechavenc"/>
+                    <output expression="&quot;El producto ya existe en el sistema? (true/false)&quot;" newline="True"/>
+                    <input variable="existesistema"/>
+                    <if expression="existesistema == true">
+                        <then>
+                            <input variable="stockactual"/>
+                            <assign variable="stockactual" expression="stockactual + cantrecibida"/>
+                            <output expression="&quot;Inventario actualizado exitosamente&quot;" newline="True"/>
+                        </then>
+                        <else>
+                            <output expression="&quot;Creando el nuevo registro de producto&quot;" newline="True"/>
+                        </else>
+                    </if>
+                </then>
+                <else>
+                    <output expression="&quot;Se rechaza la mercanc&#237;a&quot;" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

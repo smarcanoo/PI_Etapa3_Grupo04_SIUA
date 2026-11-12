@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="flow 02"/>
+        <attribute name="authors" value="Camila"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-09-11 07:32:53 p.&#160;m."/>
+        <attribute name="created" value="Q2FtaWxhO0NBTUlMQTsyMDI2LTA5LTExOzA2OjE5OjM4IHAuwqBtLjsyNjE0"/>
+        <attribute name="edited" value="Q2FtaWxhO0NBTUlMQTsyMDI2LTA5LTExOzA3OjMyOjUzIHAuwqBtLjsyOzI3MTY="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="ventaactiva, continuarcompra" type="Boolean" array="False" size=""/>
+            <declare name="codigoprod" type="String" array="False" size=""/>
+            <declare name="cantsolicitada, stockdisponible" type="Integer" array="False" size=""/>
+            <declare name="precioventa, subtotalproducto, subtotalventa, impuesto, totalventa" type="Real" array="False" size=""/>
+            <assign variable="subtotalventa" expression="0"/>
+            <assign variable="ventaactiva" expression="true"/>
+            <output expression="&quot;Ingrese el c&#243;digo del producto:&quot;" newline="True"/>
+            <input variable="codigoprod"/>
+            <output expression="&quot;Ingrese la cantidad solicitada:&quot;" newline="True"/>
+            <input variable="cantsolicitada"/>
+            <output expression="&quot;Ingrese el stock disponible:&quot;" newline="True"/>
+            <input variable="stockdisponible"/>
+            <output expression="&quot;Ingrese el precio de venta del producto:&quot;" newline="True"/>
+            <input variable="precioventa"/>
+            <if expression="cantsolicitada &lt;= stockdisponible">
+                <then>
+                    <assign variable="subtotalproducto" expression="cantsolicitada * precioventa"/>
+                    <assign variable="subtotalventa" expression="subtotalventa + subtotalproducto"/>
+                    <assign variable="stockdisponible" expression="stockdisponible - cantsolicitada"/>
+                    <output expression="&quot;Producto agregado. Subtotal parcial: &quot; &amp; subtotalventa" newline="True"/>
+                </then>
+                <else>
+                    <output expression="&quot;Alerta: stock insuficiente para el producto &quot; &amp; codigoprod" newline="True"/>
+                </else>
+            </if>
+            <output expression="&quot;&#191;Desea agregar otro producto a la venta?&quot;" newline="True"/>
+            <input variable="continuarcompra"/>
+            <if expression="continuarcompra == false">
+                <then>
+                    <assign variable="ventaactiva" expression="false"/>
+                </then>
+                <else/>
+            </if>
+            <assign variable="impuesto" expression="subtotalventa * 0.13"/>
+            <assign variable="totalventa" expression="subtotalventa + impuesto"/>
+            <output expression="&quot;Subtotal: &quot; &amp; subtotalventa" newline="True"/>
+            <output expression="&quot;Impuesto (13%): &quot; &amp; impuesto" newline="True"/>
+            <output expression="&quot;Total a pagar: &quot; &amp; totalventa" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

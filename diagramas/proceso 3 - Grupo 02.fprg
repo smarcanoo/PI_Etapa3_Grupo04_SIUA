@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="PROCESO 3"/>
+        <attribute name="authors" value="greiv"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-09-11 01:39:29 p.&#160;m."/>
+        <attribute name="created" value="Z3JlaXY7REVTS1RPUC1FSjNRSVVIOzIwMjYtMDktMTE7MTI6NDM6MTUgcC7CoG0uOzMyMjY="/>
+        <attribute name="edited" value="Z3JlaXY7REVTS1RPUC1FSjNRSVVIOzIwMjYtMDktMTE7MDE6Mzk6MjkgcC7CoG0uOzE7MzM0Mg=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="STOCKSUG, CODIGO, STOCKACTUAL, VENCE, STOCKMIN" type="Integer" array="False" size=""/>
+            <declare name="PRO" type="String" array="False" size=""/>
+            <declare name="PROS" type="Boolean" array="False" size=""/>
+            <assign variable="PROS" expression="FALSE"/>
+            <while expression="PROS == False">
+                <output expression="&quot;El stock de que producto desea verificar?&quot;" newline="True"/>
+                <input variable="PRO"/>
+                <output expression="&quot;Debe de indicar el Umbral minimo del procuto:&quot; &amp; PRO" newline="True"/>
+                <input variable="STOCKMIN"/>
+                <output expression="&quot;Debe indicar el stock actual de:&quot; &amp; PRO" newline="True"/>
+                <input variable="STOCKACTUAL"/>
+                <output expression="&quot;Debe indicar el codigo de su producto&quot;" newline="True"/>
+                <input variable="CODIGO"/>
+                <if expression="STOCKACTUAL &lt;= STOCKMIN">
+                    <then>
+                        <assign variable="STOCKSUG" expression="(STOCKMIN * 2) - STOCKACTUAL"/>
+                        <output expression="&quot;SU PRODUCTO ESTA BAJO&quot;" newline="True"/>
+                        <output expression="&quot;CODIGO: &quot; &amp; CODIGO" newline="True"/>
+                        <output expression="&quot;NOMBRE: &quot; &amp; PRO" newline="True"/>
+                        <output expression="&quot;STOCK ACTUAL DE: &quot; &amp; STOCKACTUAL" newline="True"/>
+                        <output expression="&quot;SE RECOMIENDA REPONER: &quot; &amp; STOCKSUG" newline="True"/>
+                    </then>
+                    <else/>
+                </if>
+                <output expression="&quot;En cuantos dias vence su producto?&quot;" newline="True"/>
+                <input variable="VENCE"/>
+                <if expression="VENCE &lt;= 7">
+                    <then>
+                        <output expression="&quot;Su producto vence pronto y es recomendado reponer:&quot;&amp; PRO" newline="True"/>
+                    </then>
+                    <else>
+                        <output expression="&quot;Su producto no tiene una fecha de vencimiento pronta&quot;" newline="True"/>
+                    </else>
+                </if>
+                <output expression="&quot;Hay mas productos que desea verificar?&quot;" newline="True"/>
+                <declare name="w" type="Boolean" array="False" size=""/>
+                <input variable="w"/>
+                <if expression="w">
+                    <then/>
+                    <else>
+                        <assign variable="PROS" expression="True"/>
+                    </else>
+                </if>
+            </while>
+        </body>
+    </function>
+</flowgorithm>
